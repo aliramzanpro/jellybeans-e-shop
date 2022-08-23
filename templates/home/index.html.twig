@@ -1,20 +1,86 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %} AliExprass Shopping ! {% endblock title %}
+
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{# if homeSlider %}
+    {{ include("partials/home_slider.html.twig", {'slider': homeSlider }) }}
+{% else #}
+    {{ include("partials/title_section.html.twig", {'name':'Home Page'}) }}
+{# endif #}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/laragon/www/jellybeansshop/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/laragon/www/jellybeansshop/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
+<div class="container">
+
+    <div class="section small_pt pb_70">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="heading_s1 text-center">
+                        <h2>Exclusive Products</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="tab-style1">
+                        <ul class="nav nav-tabs justify-content-center" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="arrival-tab" data-toggle="tab" href="#arrival" role="tab" aria-controls="arrival" aria-selected="true">New Arrival</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="sellers-tab" data-toggle="tab" href="#sellers" role="tab" aria-controls="sellers" aria-selected="false">Best Sellers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="featured-tab" data-toggle="tab" href="#featured" role="tab" aria-controls="featured" aria-selected="false">Featured</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="specialoffer-tab" data-toggle="tab" href="#specialoffer" role="tab" aria-controls="specialoffer" aria-selected="false">Special Offer</a>
+                            </li>
+    
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="arrival" role="tabpanel" aria-labelledby="arrival-tab">
+                            <div class="row shop_container">
+                                {% for product in productNewArrival %}
+                                    {{ include('partials/product.html.twig',{'product': product}) }}
+                                {% endfor %}
+    
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="sellers" role="tabpanel" aria-labelledby="sellers-tab">
+                            <div class="row shop_container">
+                                {% for product in productBestSeller %}
+                                    {{ include('partials/product.html.twig',{'product': product}) }}
+                                {% endfor %}
+    
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="featured" role="tabpanel" aria-labelledby="featured-tab">
+                            <div class="row shop_container">
+                                {% for product in productFeatured %}
+                                    {{ include('partials/product.html.twig',{'product': product}) }}
+                                {% endfor %}
+    
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="specialoffer" role="tabpanel" aria-labelledby="specialoffer-tab">
+                            <div class="row shop_container">
+                                {% for product in productSpecialOffer %}
+                                    {{ include('partials/product.html.twig',{'product': product}) }}
+                                {% endfor %}
+    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </div>
+
+
 {% endblock %}
