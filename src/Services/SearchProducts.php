@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Service;
+namespace App\Services;
 
 
 
-class SearchProduct
+class SearchProducts
 {
 
 

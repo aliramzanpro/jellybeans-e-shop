@@ -3,6 +3,7 @@
 namespace App\Controller\Account;
 
 use App\Entity\Address;
+use App\Form\AddressType;
 use App\Services\CartService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -45,7 +46,7 @@ class AddressController extends AbstractController
             $entityManager->flush();
 
             if($cartService->getFullCart()){
-                return $this->redirectToRoute('checkout');
+                return $this->redirectToRoute('account');
             }
             
             $this->addFlash('address_message', 'Your address has been saved');
@@ -87,7 +88,7 @@ class AddressController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="address_delete", methods={"DELETE"})
+     * @Route("/{id}/delete", name="address_delete", methods={"GET","POST"})
      */
     public function delete(Request $request, Address $address,EntityManagerInterface $entityManager): Response
     {

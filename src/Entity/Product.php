@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use DateTimeImmutable;
+
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProductRepository;
 use DateTimeInterface;
@@ -101,7 +101,7 @@ class Product
         $this->category = new ArrayCollection();
         $this->tagsProducts = new ArrayCollection();
         $this->reviewsProducts = new ArrayCollection();
-        $this->createdAt = new \DateTime();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
 
