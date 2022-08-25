@@ -8,7 +8,7 @@ class CartService{
     
 
     private $session;
-    private $repoProduct;
+    private $productRepository;
     private $tva = 0.2;
 
     public function __construct(SessionInterface $session, ProductRepository $productRepository)
@@ -97,7 +97,7 @@ class CartService{
         $fullCart['data'] = [
             "quantity_cart" => $quantity_cart,
             "subTotalHT" => $subTotal,
-            "Taxe" => round($subTotal*$this->tva,2),
+            "Tax" => round($subTotal*$this->tva,2),
             "subTotalTTC" => round(($subTotal + ($subTotal*$this->tva)), 2)
         ];
 
